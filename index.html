@@ -18,6 +18,14 @@
             <!-- Search Bar -->
             <div class="search-bar">
                 <input type="text" id="search" placeholder="Search games...">
+                <select id="category-filter">
+                    <option value="">All Categories</option>
+                    <option value="racing">Racing</option>
+                    <option value="fps">FPS</option>
+                    <option value="puzzle">Puzzle</option>
+                    <option value="platformer">Platformer</option>
+                    <option value="strategy">Strategy</option>
+                </select>
             </div>
         </div>
     </header>
@@ -29,21 +37,31 @@
 
             <!-- Game List -->
             <div class="game-list">
-                <!-- Game 1 -->
-                <div class="game-card">
-                    <h2>Game 1</h2>
-                    <iframe src="https://somegame.com" width="320" height="240"></iframe>
+                <!-- Racing Game -->
+                <div class="game-card" data-category="racing">
+                    <h2>Racing Game - Speed Racer</h2>
+                    <iframe src="https://scratch.mit.edu/projects/123456789/" width="320" height="240"></iframe>
                 </div>
-                <!-- Game 2 -->
-                <div class="game-card">
-                    <h2>Game 2</h2>
-                    <iframe src="https://anothergame.com" width="320" height="240"></iframe>
+                
+                <!-- FPS Game -->
+                <div class="game-card" data-category="fps">
+                    <h2>FPS Game - Battle Zone</h2>
+                    <iframe src="https://scratch.mit.edu/projects/987654321/" width="320" height="240"></iframe>
                 </div>
-                <!-- Add more games here -->
-                <div class="game-card">
-                    <h2>New Game Title</h2>
-                    <iframe src="https://newgame.com" width="320" height="240"></iframe>
+
+                <!-- Puzzle Game -->
+                <div class="game-card" data-category="puzzle">
+                    <h2>Puzzle Game - Match 3</h2>
+                    <iframe src="https://scratch.mit.edu/projects/135792468/" width="320" height="240"></iframe>
                 </div>
+
+                <!-- Platformer Game -->
+                <div class="game-card" data-category="platformer">
+                    <h2>Platformer Game - Jump Quest</h2>
+                    <iframe src="https://scratch.mit.edu/projects/246813579/" width="320" height="240"></iframe>
+                </div>
+
+                <!-- Add more games here... -->
             </div>
         </div>
     </main>
@@ -58,6 +76,15 @@
             <label for="gameURL">Game URL:</label><br>
             <input type="url" id="gameURL" name="gameURL" required><br><br>
             
+            <label for="gameCategory">Category:</label><br>
+            <select id="gameCategory" name="gameCategory" required>
+                <option value="racing">Racing</option>
+                <option value="fps">FPS</option>
+                <option value="puzzle">Puzzle</option>
+                <option value="platformer">Platformer</option>
+                <option value="strategy">Strategy</option>
+            </select><br><br>
+            
             <input type="submit" value="Submit Game">
         </form>
     </div>
@@ -68,21 +95,25 @@
 
     <script>
         // Add search functionality
-        document.getElementById('search').addEventListener('input', function(e) {
-            let searchTerm = e.target.value.toLowerCase();
+        document.getElementById('search').addEventListener('input', filterGames);
+        document.getElementById('category-filter').addEventListener('change', filterGames);
+
+        function filterGames() {
+            let searchTerm = document.getElementById('search').value.toLowerCase();
+            let selectedCategory = document.getElementById('category-filter').value.toLowerCase();
             let gameCards = document.querySelectorAll('.game-card');
             
             gameCards.forEach(function(card) {
                 let gameTitle = card.querySelector('h2').textContent.toLowerCase();
-                if (gameTitle.includes(searchTerm)) {
+                let gameCategory = card.getAttribute('data-category').toLowerCase();
+                
+                if (gameTitle.includes(searchTerm) && (selectedCategory === '' || gameCategory === selectedCategory)) {
                     card.style.display = '';
                 } else {
                     card.style.display = 'none';
                 }
             });
-        });
+        }
     </script>
 </body>
 </html>
-
-
