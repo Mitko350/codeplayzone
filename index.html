@@ -5,6 +5,147 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CodePlayZone</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Background image and design */
+        body {
+            background-color: #111; /* Black background */
+            background-image: linear-gradient(45deg, #1a1a1a, #333);
+            background-size: 400% 400%;
+            animation: gradientAnimation 10s ease infinite;
+            font-family: Arial, sans-serif;
+            color: white;
+            margin: 0;
+        }
+
+        /* Keyframe animation for background */
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Centralizing the navbar */
+        header {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            text-align: center;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+            padding: 10px 0;
+            border-radius: 8px;
+        }
+
+        .navbar ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 20px;
+        }
+
+        .navbar li {
+            display: inline;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .navbar a:hover {
+            color: #f39c12;
+        }
+
+        /* Search bar */
+        .search-bar {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        #search {
+            padding: 5px;
+            font-size: 14px;
+        }
+
+        #category-filter {
+            padding: 5px;
+            font-size: 14px;
+        }
+
+        /* Main content */
+        main {
+            text-align: center;
+            margin-top: 100px;
+        }
+
+        h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .game-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 20px;
+        }
+
+        .game-card {
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .game-card iframe {
+            width: 100%;
+            height: 240px;
+            border-radius: 8px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        footer p {
+            color: white;
+            margin: 0;
+        }
+
+        /* Submit Game Section */
+        #submit-game {
+            margin-top: 50px;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            display: inline-block;
+        }
+
+        #submit-game input, #submit-game select {
+            padding: 10px;
+            margin-bottom: 10px;
+            font-size: 16px;
+            width: 100%;
+            max-width: 300px;
+            border-radius: 5px;
+        }
+    </style>
 </head>
 <body>
 
@@ -15,7 +156,6 @@
                 <li><a href="#submit-game">Submit Game</a></li>
                 <li><a href="#">About</a></li>
             </ul>
-            <!-- Search Bar -->
             <div class="search-bar">
                 <input type="text" id="search" placeholder="Search games...">
                 <select id="category-filter">
@@ -31,51 +171,34 @@
     </header>
 
     <main>
-        <div class="container">
-            <h1>Welcome to CodePlayZone!</h1>
-            <p>Your place to play and share browser-based games.</p>
+        <h1>Welcome to CodePlayZone!</h1>
+        <p>Your place to play and share browser-based games.</p>
 
-            <!-- Game List -->
-            <div class="game-list">
-                <!-- Racing Game -->
-                <div class="game-card" data-category="racing">
-                    <h2>Racing Game - Speed Racer</h2>
-                    <iframe src="https://scratch.mit.edu/projects/123456789/" width="320" height="240"></iframe>
-                </div>
-                
-                <!-- FPS Game -->
-                <div class="game-card" data-category="fps">
-                    <h2>FPS Game - Battle Zone</h2>
-                    <iframe src="https://scratch.mit.edu/projects/987654321/" width="320" height="240"></iframe>
-                </div>
-
-                <!-- Puzzle Game -->
-                <div class="game-card" data-category="puzzle">
-                    <h2>Puzzle Game - Match 3</h2>
-                    <iframe src="https://scratch.mit.edu/projects/135792468/" width="320" height="240"></iframe>
-                </div>
-
-                <!-- Platformer Game -->
-                <div class="game-card" data-category="platformer">
-                    <h2>Platformer Game - Jump Quest</h2>
-                    <iframe src="https://scratch.mit.edu/projects/246813579/" width="320" height="240"></iframe>
-                </div>
-
-                <!-- Add more games here... -->
+        <div class="game-list">
+            <div class="game-card" data-category="racing">
+                <h2>Racing Game - Speed Racer</h2>
+                <iframe src="https://www.example.com/racing-game" width="320" height="240"></iframe>
+            </div>
+            <div class="game-card" data-category="fps">
+                <h2>FPS Game - Battle Zone</h2>
+                <iframe src="https://www.example.com/fps-game" width="320" height="240"></iframe>
+            </div>
+            <div class="game-card" data-category="puzzle">
+                <h2>Puzzle Game - Match 3</h2>
+                <iframe src="https://www.example.com/puzzle-game" width="320" height="240"></iframe>
             </div>
         </div>
     </main>
 
-    <!-- Submit Game Section -->
     <div id="submit-game">
         <h2>Submit Your Game</h2>
         <form action="your-email@example.com" method="post">
             <label for="gameTitle">Game Title:</label><br>
             <input type="text" id="gameTitle" name="gameTitle" required><br><br>
-            
+
             <label for="gameURL">Game URL:</label><br>
             <input type="url" id="gameURL" name="gameURL" required><br><br>
-            
+
             <label for="gameCategory">Category:</label><br>
             <select id="gameCategory" name="gameCategory" required>
                 <option value="racing">Racing</option>
@@ -84,7 +207,7 @@
                 <option value="platformer">Platformer</option>
                 <option value="strategy">Strategy</option>
             </select><br><br>
-            
+
             <input type="submit" value="Submit Game">
         </form>
     </div>
@@ -94,7 +217,6 @@
     </footer>
 
     <script>
-        // Add search functionality
         document.getElementById('search').addEventListener('input', filterGames);
         document.getElementById('category-filter').addEventListener('change', filterGames);
 
@@ -102,11 +224,11 @@
             let searchTerm = document.getElementById('search').value.toLowerCase();
             let selectedCategory = document.getElementById('category-filter').value.toLowerCase();
             let gameCards = document.querySelectorAll('.game-card');
-            
+
             gameCards.forEach(function(card) {
                 let gameTitle = card.querySelector('h2').textContent.toLowerCase();
                 let gameCategory = card.getAttribute('data-category').toLowerCase();
-                
+
                 if (gameTitle.includes(searchTerm) && (selectedCategory === '' || gameCategory === selectedCategory)) {
                     card.style.display = '';
                 } else {
@@ -115,5 +237,6 @@
             });
         }
     </script>
+
 </body>
 </html>
